@@ -63,7 +63,7 @@ Shader "Custom/BlinnPhongWithTexture"
 				// o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 				o.uv = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				o.worldNormal = UnityObjectToWorldNormal(v.normal);
-				o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+				o.worldPos = mul(_Object2World, v.vertex);
 
 				return o;
 			}
