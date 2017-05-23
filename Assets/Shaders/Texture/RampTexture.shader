@@ -62,18 +62,20 @@ Shader "Custom/RampTexture"
 			{
 				fixed3 worldNormal = normalize(i.worldNormal);
 				fixed3 worldLightDir = normalize(UnityWorldSpaceLightDir(i.worldPos));
-				fixed3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
 
+				// specular part
+				fixed3 viewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
 				// 在切线空间下计算光照的各个分量
 				fixed3 halfDir = normalize(worldLightDir + viewDir);
-
 				fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(worldNormal, halfDir)), _Gloss);
 
+				// diffuse part
 				// Use the texture to sample the diffuse color
 				fixed halfLambert = 0.5 * dot(worldNormal, worldLightDir) + 0.5;
 				fixed diffuseColor = tex2D(_RampTex, fixed2(halfLambert, halfLambert)).rgb * _Color.rgb;
 				fixed3 diffuse = _LightColor0.rgb * diffuseColor;
 
+				// ambient part
 				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz;
 
 				return fixed4(specular + diffuse + ambient, 1.0);

@@ -1,6 +1,6 @@
 ﻿//
 // 在切线空间下进行光照计算。
-// 效率高。
+// 效率高。但是通用性不如在世界坐标下进行光照计算。
 //
 Shader "Custom/bumpMapping In TangentSpace" 
 {
