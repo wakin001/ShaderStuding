@@ -1,4 +1,6 @@
-﻿Shader "Custom/SimpleTexture" 
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/SimpleTexture" 
 {
 	Properties 
 	{
@@ -35,7 +37,7 @@
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.position = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.position = UnityObjectToClipPos(v.vertex);
 				o.uv = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 
 				return o;

@@ -1,4 +1,6 @@
-﻿//
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+//
 // 在切线空间下进行光照计算。
 // 效率高。但是通用性不如在世界坐标下进行光照计算。
 //
@@ -58,7 +60,7 @@ Shader "Custom/bumpMapping In TangentSpace"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				// o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
 				o.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
 				o.uv.zw = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;

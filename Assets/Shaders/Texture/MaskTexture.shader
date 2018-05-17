@@ -1,4 +1,6 @@
-﻿//
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+//
 // Mask纹理。
 // 允许我们保护某些区域，使他们免于修改。
 //  常见用法：
@@ -63,7 +65,7 @@ Shader "Custom/MaskTexture"
 			v2f vert(a2v v)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 
 				o.uv.xy = TRANSFORM_TEX(v.texcoord, _MainTex).xy;
 //				o.uv.xy = v.texcoord.xy * _MainTex_ST.xy + _MainTex_ST.zw;
