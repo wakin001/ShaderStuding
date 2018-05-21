@@ -1,4 +1,4 @@
-﻿Shader "Unlit/Diffuse_vert_frag"
+﻿Shader "MyShaders/Diffuse_vert_frag"
 {
 	Properties
 	{
@@ -55,7 +55,8 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				// ambient				//fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.rgb;
+				// ambient
+				//fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.rgb;
 
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
