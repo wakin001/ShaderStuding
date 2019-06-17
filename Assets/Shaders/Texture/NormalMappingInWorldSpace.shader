@@ -2,7 +2,7 @@
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 //
-// 在切线空间下进行光照计算。
+// 在world space下进行光照计算。
 // 效率高。
 //
 Shader "Custom/bumpMapping In World Space" 
