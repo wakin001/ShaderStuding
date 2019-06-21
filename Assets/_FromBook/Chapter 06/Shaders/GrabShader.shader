@@ -44,6 +44,7 @@ Shader "CookbookShaders/Chapter06/GrabShader"
 	{
 		fixed4 col = tex2Dproj(_GrabTexture, UNITY_PROJ_COORD(i.uvgrab));
 	return col + half4(0.5,0,0,0);
+	//return col;
 	}
 
 		ENDCG

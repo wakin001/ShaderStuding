@@ -1,10 +1,15 @@
-﻿Shader "MyShaders/NormalExtrusion"
+﻿Shader "MyShaders/Snow"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_ExtrusionTex("Texture", 2D) = "white" {}
-		_Amount ("Extrusion Amount", Range(-0.0001, 0.0001)) = 0
+		_MainColor("Main Color", Color) = (1.0, 1.0, 1.0, 1.0)
+
+		_Bump("Bump", 2D) = "bump" {}
+		_Snow ("Level of snow", Range(1, -1)) = 1
+		_SnowColor("Snow Color", Color) = (1.0, 1.0, 1.0, 1.0)
+		_SnowDirection("Direction of snow", Vector) = (0, 1, 0)
+		_SnowDepth("Depth of snow", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -34,26 +39,31 @@
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+				float3 worldNormal : TEXCOORD1;
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-			sampler2D _ExtrusionTex;
-			float4 _ExtrusionTex_ST;
-			float _Amount;
-
+			sampler2D _Bump;
+			float _Snow;
+			float4 _SnowColor;
+			float4 _MainColor;
+			float4 _SnowDirection;
+			float _SnowDepth;
 
 			v2f vert (appdata v)
 			{
 				v2f o;
-                
-				float4 tex = tex2Dlod(_ExtrusionTex, float4(v.uv, 0, 0));
-				float extrusion = tex.r * 2 - 1;
+                // convert _SnowDirection from world coordinate to object cooridnate.
+				fixed4 sn = mul(UNITY_MATRIX_IT_MV, _SnowDirection);
+				if (dot(v.normal, sn.xyz) >= _Snow)
+				{
+					v.vertex.xyz += (sn.xyz + v.normal) * _SnowDepth * _Snow;
+				}
 
-				v.vertex.xyz += v.normal * _Amount * extrusion;
-				
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				o.worldNormal = UnityObjectToWorldNormal(v.normal);
 
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
@@ -63,11 +73,18 @@
 			{
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
-				fixed4 colExtrusion = tex2D(_ExtrusionTex, i.uv);
 				
-				float extrusion = abs(colExtrusion.r * 2 - 1);
+				// normal vector
+				//fixed3 normalMapping = UnpackNormal(tex2D(_Bump, i.uv));
 
-				col = lerp(col, fixed4(0, 0, 0, col.a), extrusion * _Amount / 0.0001 * 1.1);
+				if (dot(i.worldNormal, _SnowDirection.xyz) > _Snow)
+				{
+					col.xyz = _SnowColor.rgb;
+				}
+				else
+				{
+					col.xyz *= _MainColor;
+				}
 
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
