@@ -1,0 +1,25 @@
+﻿<Properties StartupConfiguration="{6FE401DD-ECE6-0FE8-D035-5B39434C3727}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Cookbook/Scripts/8. Screen Effects/BlendModeImageEffect.cs">
+    <Files>
+      <File FileName="Assets/Cookbook/Scripts/8. Screen Effects/TestMyRenderImage.cs" Line="12" Column="34" />
+      <File FileName="Assets/Cookbook/Shader/8. Screen Effects/ImageEffect.shader" Line="1" Column="1" />
+      <File FileName="Assets/Cookbook/Shader/8. Screen Effects/SceneDepthEffect.shader" Line="3" Column="5" />
+      <File FileName="Assets/Cookbook/Scripts/8. Screen Effects/TestDepthPower.cs" Line="42" Column="1" />
+      <File FileName="Assets/Cookbook/Shader/8. Screen Effects/BSCEffect.shader" Line="42" Column="1" />
+      <File FileName="Assets/Cookbook/Scripts/8. Screen Effects/BSCImageEffect.cs" Line="67" Column="6" />
+      <File FileName="Assets/Cookbook/Shader/7. Mobile Shader/SurfForMobile.shader" Line="1" Column="1" />
+      <File FileName="Assets/Cookbook/Shader/7. Mobile Shader/SurfNotRefined.shader" Line="1" Column="1" />
+      <File FileName="Assets/Cookbook/Shader/7. Mobile Shader/SurfRefined.shader" Line="1" Column="1" />
+      <File FileName="Assets/Cookbook/Scripts/8. Screen Effects/BlendModeImageEffect.cs" Line="65" Column="58" />
+      <File FileName="Assets/Cookbook/Shader/8. Screen Effects/BlendModelEffect.shader" Line="39" Column="13" />
+      <File FileName="Assets/First edition/5084_08_Code/Code/MobileShader.shader" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
