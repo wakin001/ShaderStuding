@@ -67,6 +67,7 @@ public class Bloom : PostEffectBase
 
             // 把高斯模糊得到的texture传给material
             material.SetTexture("_Bloom", buffer0);
+
             // 使用shader的第四个pass来进行混合，存在destination中。
             Graphics.Blit(source, destination, material, 3);
 
